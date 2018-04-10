@@ -1,0 +1,33 @@
+
+
+<div style="text-align:center">
+  <h1>
+    {{ pageTitle }}!
+  </h1>
+  <img width='1000' src="../assets/img/GolfCourse.jpg"/>
+  <h2>
+    {{description}}
+  </h2>
+
+  <mat-form-field>
+    <mat-select placeholder="Select Course">
+      <mat-option *ngFor="let course of cardCourses" (click)="setCourse(course)" [value]="course.name">
+        {{course.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <mat-form-field *ngIf="selectedCourse">
+    <mat-select  placeholder= "Select Tee Type" [(ngModel)] = "tee" >
+      <mat-option *ngFor="let tee of selectedCourse.course.tee_types" (click)="setTeeType(tee.tee_type)" [value]="tee.tee_type">
+        {{tee.tee_type}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-button [routerLink] = "['/golf-card']"> Start Game </button>
+
+</div>
+
+<router-outlet></router-outlet>
